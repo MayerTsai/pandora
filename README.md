@@ -39,7 +39,7 @@ Other architectures, systems or even distros could be not supported.
     pandora.close(0);
   }
   PND_HANDLER connection(PND_MESSAGE *msg) {
-    printf("Conected to serveri\n");
+    printf("Connected to server\n");
     pandora.emit("hello");
   }
   int main() {

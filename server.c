@@ -1,27 +1,31 @@
 #include <pandora.h>
 
-PND_HANDLER world(PND_MESSAGE *msg) {
-  printf("that fucker said woeld\n");
-  pandora.emit("stop\0");
-}
-
-PND_HANDLER stop(PND_MESSAGE *msg) {
-    pandora.close(0);
+void world_handler(PND_MESSAGE *msg)
+{
+  printf("client said: %s\n", msg->msg);
+  pandora.emit("stop");
 }
 /*  */
 /* void* list(void* arg) { */
 /*   pandora.listen(1337); */
 /* } */
 
-int main() {
-  printf("using %s\n\n", pandora.version);
+int main()
+{
+  printf("Starting Pandora Server...\n");
+  printf("Using Pandora version: %s\n\n", pandora.version);
 
-  pandora.on("world!\0", world);
+  pandora.on("world!", world_handler);
 
-  pandora.listen(1337);
-  pandora.info();
+  if (pandora.listen(1337) < 0)
+  {
+    fprintf(stderr, "Failed to start listener.\n");
+    return 1;
+  }
 
-  sleep(10);
+  // Wait for the listener thread to finish, keeping the server alive.
+  pthread_join(pandora.hostRuntime, NULL);
+
   pandora.close(0);
-  exit(0);
+  return 0;
 }

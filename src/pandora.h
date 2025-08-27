@@ -10,29 +10,34 @@
 #include <sys/time.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <netdb.h> 
+#include <netdb.h>
 #include <pthread.h>
 
 #define PND_STATUS_DISCONNECTED 0x00
-#define PND_STATUS_CONNECTED    0x01
-#define PND_STATUS_LISTENING    0x02
+#define PND_STATUS_CONNECTED 0x01
+#define PND_STATUS_LISTENING 0x02
 
-#define PND_OK                  0x06
-#define PND_ERROR_INVOCATION    0x07
-#define PND_ERROR_CONNECTION    0x08
-#define PND_ERROR_SOCKET        0x09
+#define PND_OK 0x06
+#define PND_ERROR_INVOCATION 0x07
+#define PND_ERROR_CONNECTION 0x08
+#define PND_ERROR_SOCKET 0x09
 
-typedef void* PND_HANDLER;
-typedef struct {
+typedef struct
+{
   char *msg;
   int *imsg;
 } PND_MESSAGE;
-typedef struct {
+
+typedef void PND_HANDLER_FUNCTION(PND_MESSAGE *);
+
+typedef struct
+{
   char *ev;
-  PND_HANDLER (*callback)(PND_MESSAGE*);
+  PND_HANDLER_FUNCTION *callback;
 } PND_LISTENER;
 
-struct Pandora {
+struct Pandora
+{
   char *version;
   int status;
   char *host;
@@ -47,9 +52,9 @@ struct Pandora {
   void (*info)(void);
   int (*check)(void);
   int (*listen)(int);
-  int (*connect)(char*, int);
-  void (*on)(char*, PND_HANDLER);
-  void (*emit)(char*);
+  int (*connect)(char *, int);
+  void (*on)(char *, PND_HANDLER_FUNCTION *);
+  void (*emit)(char *);
   void (*digest)(void);
   void (*close)(int);
 
@@ -62,11 +67,11 @@ struct Pandora {
 void _info(void);
 int _check(void);
 int _listen(int);
-int _connect(char*, int);
-void _on(char*, PND_HANDLER);
-void _emit(char*);
+int _connect(char *, int);
+void _on(char *, PND_HANDLER_FUNCTION *);
+void _emit(char *);
 void _digest(void);
 void _close(int);
 
-struct Pandora pandora;
+extern struct Pandora pandora;
 #endif

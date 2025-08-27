@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "pandora.h": "c",
+    "select.h": "c"
+  }
+}
