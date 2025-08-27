@@ -4,7 +4,7 @@
     {
       "label": "build: library",
       "type": "shell",
-      "command": "gcc -c src/pandora.c -Isrc -o libpandora.o && ar rcs libpandora.a libpandora.o",
+      "command": "gcc -g -Wall -Isrc -c src/pandora.c -o pandora.o && ar rcs libpandora.a pandora.o",
       "problemMatcher": [
         "$gcc"
       ],
@@ -16,6 +16,7 @@
       "command": "/usr/bin/gcc",
       "args": [
         "-g",
+        "-Wall",
         "server.c",
         "-Isrc",
         "-L${workspaceFolder}",
@@ -41,6 +42,7 @@
       "command": "/usr/bin/gcc",
       "args": [
         "-g",
+        "-Wall",
         "client.c",
         "-Isrc",
         "-L${workspaceFolder}",
@@ -75,7 +77,7 @@
     {
       "label": "clean",
       "type": "shell",
-      "command": "rm -f ${workspaceFolder}/server ${workspaceFolder}/client ${workspaceFolder}/libpandora.a ${workspaceFolder}/libpandora.o",
+      "command": "rm -f ${workspaceFolder}/server ${workspaceFolder}/client ${workspaceFolder}/libpandora.a ${workspaceFolder}/pandora.o",
       "problemMatcher": []
     },
     {

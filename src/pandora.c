@@ -24,7 +24,7 @@ void *_hostRuntime()
 {
   pandora.clients = malloc(1 * sizeof(int));
   int maxsd;
-  int activity;
+  // int activity;
   int activesocket;
   socklen_t socketlen;
   int valread;
@@ -46,7 +46,7 @@ void *_hostRuntime()
           maxsd = pandora.clients[c];
       }
 
-    activity = select(maxsd + 1, &pandora.fdclients, NULL, NULL, NULL);
+    int activity = select(maxsd + 1, &pandora.fdclients, NULL, NULL, NULL);
 
     // Main socket
     if (FD_ISSET(pandora.socket, &pandora.fdclients))
