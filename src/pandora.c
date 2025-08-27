@@ -184,7 +184,7 @@ int _connect(char *host, int port)
 {
   if (pandora.status > 0)
   {
-    printf("ERROR pandora is currently %s", pandora.status == 1 ? "conected" : "listening\n");
+    printf("ERROR pandora is currently %s", pandora.status == 1 ? "connected" : "listening\n");
     return PND_ERROR_INVOCATION;
   }
   if (!strlen(host) || !port)
