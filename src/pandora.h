@@ -64,14 +64,6 @@ struct Pandora
   fd_set fdclients;
   pthread_t hostRuntime;
 };
-void _info(void);
-int _check(void);
-int _listen(int);
-int _connect(char *, int);
-void _on(char *, PND_HANDLER_FUNCTION *);
-void _emit(char *);
-void _digest(void);
-void _close(int);
 
 extern struct Pandora pandora;
 #endif

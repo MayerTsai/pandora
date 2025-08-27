@@ -1,5 +1,14 @@
 #include "pandora.h"
 
+void _info(void);
+int _check(void);
+int _listen(int);
+int _connect(char *, int);
+void _on(char *, PND_HANDLER_FUNCTION *);
+void _emit(char *);
+void _digest(void);
+void _close(int);
+
 struct Pandora pandora = {
     "0.0.2",   // version (char*)
     0,         // status (int) 0 disconnected, 1 connected, 2 listening
