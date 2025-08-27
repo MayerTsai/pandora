@@ -2,7 +2,7 @@
 
 struct Pandora pandora = {
     "0.0.2",   // version (char*)
-    0,         // status (int) 0 disconected, 1 connected, 2 listening
+    0,         // status (int) 0 disconnected, 1 connected, 2 listening
     "0.0.0.0", // host (char*)
     0,         // port (int)
     -1,        // socket (int)
@@ -95,7 +95,7 @@ void *_hostRuntime()
         }
         else
         { // if not, its a input
-          printf("Message recieved: %s\n", buffer);
+          printf("Message received: %s\n", buffer);
           PND_MESSAGE msg = {buffer};
           int cev = pandora.listenersc;
           while (cev--)
@@ -130,7 +130,7 @@ int _listen(int port)
 {
   if (pandora.status > PND_STATUS_DISCONNECTED)
   {
-    printf("ERROR pandora is currently %s\n", pandora.status == PND_STATUS_CONNECTED ? "conected" : "listening");
+    printf("ERROR pandora is currently %s\n", pandora.status == PND_STATUS_CONNECTED ? "conceted" : "listening");
     return PND_ERROR_INVOCATION;
   }
   if (!port)
