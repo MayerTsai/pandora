@@ -8,6 +8,7 @@ void _on(char *, PND_HANDLER_FUNCTION *);
 void _emit(char *);
 void _digest(void);
 void _close(int);
+void *_hostRuntime();
 
 struct Pandora pandora = {
     "0.0.2",   // version (char*)
