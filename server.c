@@ -5,10 +5,6 @@ void world_handler(PND_MESSAGE *msg)
   printf("client said: %s\n", msg->msg);
   pandora.emit("stop");
 }
-/*  */
-/* void* list(void* arg) { */
-/*   pandora.listen(1337); */
-/* } */
 
 int main()
 {

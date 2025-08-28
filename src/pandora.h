@@ -43,8 +43,8 @@ struct Pandora
   char *host;
   int port;
   int socket;
-  int listenersc;
-  int clientsc;
+  int listenersc; // listener count
+  int clientsc;   // client count
 
   struct hostent *server;
   /* char buffer[256]; */

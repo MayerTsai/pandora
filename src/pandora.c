@@ -57,6 +57,8 @@ void *_hostRuntime()
       }
 
     int activity = select(maxsd + 1, &pandora.fdclients, NULL, NULL, NULL);
+    if (activity < 0)
+      printf("Error in select");
 
     // Main socket
     if (FD_ISSET(pandora.socket, &pandora.fdclients))
